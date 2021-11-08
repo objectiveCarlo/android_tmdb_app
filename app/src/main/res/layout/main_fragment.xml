@@ -14,7 +14,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/allProductRecyclerView"
+            android:id="@+id/popularVideosRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintHorizontal_bias="0.0"

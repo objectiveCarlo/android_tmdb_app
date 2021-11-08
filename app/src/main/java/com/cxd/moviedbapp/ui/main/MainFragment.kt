@@ -29,8 +29,9 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private val viewModel: PopularMoviesViewModel by activityViewModels<PopularMoviesViewModel>()
+    private val viewModel: PopularMoviesViewModel by activityViewModels()
     private val adapter = PopularMoviesAdapter()
+    private var listJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,15 +51,10 @@ class MainFragment : Fragment() {
         }
     }
 
-
-    private var searchJob: Job? = null
-
-
     @ExperimentalPagingApi
     private fun startSearchJob() {
-
-        searchJob?.cancel()
-        searchJob = lifecycleScope.launch {
+        listJob?.cancel()
+        listJob = lifecycleScope.launch {
             viewModel.getMovies()
                 .collectLatest {
                     adapter.submitData(it)
@@ -66,24 +62,13 @@ class MainFragment : Fragment() {
         }
     }
 
-//    private fun snackBarClickedPlayer(name: String) {
-//        val parentLayout = findViewById<View>(android.R.id.content)
-//        Snackbar.make(parentLayout, name, Snackbar.LENGTH_LONG)
-//            .show()
-//    }
-
     private fun setUpAdapter() {
-
-        binding.allProductRecyclerView.apply {
+        binding.popularVideosRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
-//        binding.allProductRecyclerView.adapter = adapter.withLoadStateFooter(
-//            footer = PlayersLoadingStateAdapter { retry() }
-//        )
-        binding.allProductRecyclerView.adapter = adapter
+        binding.popularVideosRecyclerView.adapter = adapter
         adapter.addLoadStateListener { loadState ->
-
             if (loadState.mediator?.refresh is LoadState.Loading) {
 
                 if (adapter.snapshot().isEmpty()) {
@@ -94,7 +79,6 @@ class MainFragment : Fragment() {
             } else {
                 binding.progress.isVisible = false
                 binding.swipeRefreshLayout.isRefreshing = false
-
                 val error = when {
                     loadState.mediator?.prepend is LoadState.Error -> loadState.mediator?.prepend as LoadState.Error
                     loadState.mediator?.append is LoadState.Error -> loadState.mediator?.append as LoadState.Error
@@ -112,11 +96,6 @@ class MainFragment : Fragment() {
 
             }
         }
-
-    }
-
-    private fun retry() {
-        adapter.retry()
     }
 
 }

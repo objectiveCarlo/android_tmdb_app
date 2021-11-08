@@ -24,5 +24,4 @@ class PopularMoviesViewModel @Inject constructor(
         currentResult = newResult
         return newResult
     }
-
 }
