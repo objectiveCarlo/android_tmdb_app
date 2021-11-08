@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.cxd.moviedbapp.common.models.domain.Movie
 import com.cxd.moviedbapp.databinding.AdapterItemBinding
 
@@ -31,6 +33,13 @@ class PopularMoviesAdapter: PagingDataAdapter<Movie, PopularMoviesAdapter.MovieV
         fun bind(data: Movie?) {
             binding.let {
                 binding.title.text = data?.title
+                data?.image?.let {
+                    binding.imageView.load("https://image.tmdb.org/t/p/w500/$it") {
+                        crossfade(durationMillis = 2000)
+                        transformations(RoundedCornersTransformation(12.5f))
+                    }
+                }
+
             }
         }
     }
