@@ -60,7 +60,7 @@ class MainFragment : Fragment() {
     @ExperimentalPagingApi
     private fun setUpAdapter() {
         binding.popularVideosRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
         }
         binding.popularVideosRecyclerView.adapter = adapter
