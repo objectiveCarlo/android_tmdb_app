@@ -4,26 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:foreground="?attr/selectableItemBackground">
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_margin="10dp"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        tools:background="#000000"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="#000000" />
+        app:layout_constraintBottom_toTopOf="@+id/title"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:maxLines="2"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
