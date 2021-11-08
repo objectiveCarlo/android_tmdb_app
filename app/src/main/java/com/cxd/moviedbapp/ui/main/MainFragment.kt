@@ -45,14 +45,14 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
-        startSearchJob()
+        startListJob()
         binding.swipeRefreshLayout.setOnRefreshListener {
             adapter.refresh()
         }
     }
 
     @ExperimentalPagingApi
-    private fun startSearchJob() {
+    private fun startListJob() {
         listJob?.cancel()
         listJob = lifecycleScope.launch {
             viewModel.getMovies()
