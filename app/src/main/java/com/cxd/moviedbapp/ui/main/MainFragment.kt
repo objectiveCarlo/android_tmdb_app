@@ -41,6 +41,7 @@ class MainFragment : Fragment() {
         startListJobs()
         binding.swipeRefreshLayout.setOnRefreshListener {
             popularMoviesAdapter.refresh()
+            upcomingMoviesAdapter.refresh()
         }
     }
 
