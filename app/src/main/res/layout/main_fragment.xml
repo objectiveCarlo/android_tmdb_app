@@ -14,14 +14,28 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/task_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/popularHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:gravity="left"
+                android:text="Popular Movies"
+                android:paddingTop="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/popularVideosRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/popularVideosRecyclerView"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                android:layout_height="200dp"
+                app:layout_constraintBottom_toTopOf="@+id/upcomingHeader"
+                app:layout_constraintTop_toBottomOf="@+id/popularHeader"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -29,14 +43,15 @@ xmlns:tools="http://schemas.android.com/tools">
                 tools:listitem="@layout/adapter_item" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/upcomingHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 android:gravity="left"
-                android:text="adadadadad"
+                android:text="Upcoming Movies"
                 android:paddingTop="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/upcomingVideosRecyclerView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -45,11 +60,11 @@ xmlns:tools="http://schemas.android.com/tools">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/upcomingVideosRecyclerView"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/upcomingHeader"
                 tools:listitem="@layout/adapter_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
