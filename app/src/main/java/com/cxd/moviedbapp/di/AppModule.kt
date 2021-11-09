@@ -4,6 +4,7 @@ import android.content.Context
 import com.cxd.moviedbapp.BuildConfig
 import com.cxd.moviedbapp.common.dao.RemoteKeysDao
 import com.cxd.moviedbapp.common.db.AppDataBase
+import com.cxd.moviedbapp.features.favorites.datasource.FavoriteMovieDao
 import com.cxd.moviedbapp.features.popular.datasource.local.PopularMoviesDao
 import com.cxd.moviedbapp.features.popular.datasource.remote.PopularMoviesService
 import dagger.Module
@@ -56,6 +57,10 @@ object AppModule {
     @Singleton
     @Provides
     fun providesPopularMoviesDao(appDataBase: AppDataBase): PopularMoviesDao = appDataBase.popularMovieDao
+
+    @Singleton
+    @Provides
+    fun providesFavoriteMoviesDao(appDataBase: AppDataBase): FavoriteMovieDao = appDataBase.favoriteMovieDao
 
     @Singleton
     @Provides
