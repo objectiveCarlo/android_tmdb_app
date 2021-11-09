@@ -22,8 +22,8 @@ class MainFragment : Fragment() {
     private lateinit var binding: MainFragmentBinding
 
     private val viewModel: MovieListViewModel by activityViewModels()
-    private val adapter = MoviesAdapter()
-    private var listJob: Job? = null
+    private val popularMoviesAdapter = MoviesAdapter()
+    private val upcomingMoviesAdapter = MoviesAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,35 +36,43 @@ class MainFragment : Fragment() {
     @ExperimentalPagingApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpAdapter()
-        startListJob()
+        setUpPopularAdapter()
+        setUpComingAdapter()
+        startListJobs()
         binding.swipeRefreshLayout.setOnRefreshListener {
-            adapter.refresh()
+            popularMoviesAdapter.refresh()
         }
     }
 
     @ExperimentalPagingApi
-    private fun startListJob() {
-        listJob?.cancel()
-        listJob = lifecycleScope.launch {
+    private fun startListJobs() {
+        lifecycleScope.launch {
             viewModel.getPopularMovies()
                 .collectLatest {
-                    adapter.submitData(it)
+                    popularMoviesAdapter.submitData(it)
+                }
+
+        }
+        lifecycleScope.launch {
+            viewModel.getUpcomingMovies()
+                .collectLatest {
+                    upcomingMoviesAdapter.submitData(it)
                 }
         }
+
     }
 
     @ExperimentalPagingApi
-    private fun setUpAdapter() {
-        binding.popularVideosRecyclerView.apply {
+    private fun setUpComingAdapter() {
+        binding.upcomingVideosRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
         }
-        binding.popularVideosRecyclerView.adapter = adapter
-        adapter.addLoadStateListener { loadState ->
+        binding.upcomingVideosRecyclerView.adapter = upcomingMoviesAdapter
+        upcomingMoviesAdapter.addLoadStateListener { loadState ->
             if (loadState.mediator?.refresh is LoadState.Loading) {
 
-                if (adapter.snapshot().isEmpty()) {
+                if (upcomingMoviesAdapter.snapshot().isEmpty()) {
                     binding.progress.isVisible = true
                 }
                 binding.errorTxt.isVisible = false
@@ -80,7 +88,44 @@ class MainFragment : Fragment() {
                     else -> null
                 }
                 error?.let {
-                    if (adapter.snapshot().isEmpty()) {
+                    if (upcomingMoviesAdapter.snapshot().isEmpty()) {
+                        binding.errorTxt.isVisible = true
+                        binding.errorTxt.text = it.error.localizedMessage
+                    }
+
+                }
+
+            }
+        }
+    }
+
+    @ExperimentalPagingApi
+    private fun setUpPopularAdapter() {
+        binding.popularVideosRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+        }
+        binding.popularVideosRecyclerView.adapter = popularMoviesAdapter
+        popularMoviesAdapter.addLoadStateListener { loadState ->
+            if (loadState.mediator?.refresh is LoadState.Loading) {
+
+                if (popularMoviesAdapter.snapshot().isEmpty()) {
+                    binding.progress.isVisible = true
+                }
+                binding.errorTxt.isVisible = false
+
+            } else {
+                binding.progress.isVisible = false
+                binding.swipeRefreshLayout.isRefreshing = false
+                val error = when {
+                    loadState.mediator?.prepend is LoadState.Error -> loadState.mediator?.prepend as LoadState.Error
+                    loadState.mediator?.append is LoadState.Error -> loadState.mediator?.append as LoadState.Error
+                    loadState.mediator?.refresh is LoadState.Error -> loadState.mediator?.refresh as LoadState.Error
+
+                    else -> null
+                }
+                error?.let {
+                    if (popularMoviesAdapter.snapshot().isEmpty()) {
                         binding.errorTxt.isVisible = true
                         binding.errorTxt.text = it.error.localizedMessage
                     }
