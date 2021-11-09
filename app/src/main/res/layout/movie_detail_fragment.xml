@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.MovieDetailFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -56,8 +58,8 @@
         android:background="@color/black"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/moviePoster"
-        app:srcCompat="@android:id/closeButton" />
+        app:layout_constraintTop_toTopOf="@id/moviePoster" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -20,9 +20,6 @@ import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
     private lateinit var binding: MainFragmentBinding
-    companion object {
-        fun newInstance() = MainFragment()
-    }
 
     private val viewModel: PopularMoviesViewModel by activityViewModels()
     private val adapter = PopularMoviesAdapter()
