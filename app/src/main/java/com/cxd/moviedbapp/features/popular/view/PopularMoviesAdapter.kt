@@ -2,6 +2,7 @@ package com.cxd.moviedbapp.features.popular.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,7 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.cxd.moviedbapp.common.models.domain.Movie
 import com.cxd.moviedbapp.databinding.AdapterItemBinding
+import com.cxd.moviedbapp.ui.main.MainFragmentDirections
 
 class PopularMoviesAdapter: PagingDataAdapter<Movie, PopularMoviesAdapter.MovieViewHolder>(
         MovieDiffCallback()
@@ -20,15 +22,25 @@ class PopularMoviesAdapter: PagingDataAdapter<Movie, PopularMoviesAdapter.MovieV
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        return MovieViewHolder(
+        val holder = MovieViewHolder(
             AdapterItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
+
+        holder.binding.root.setOnClickListener { view ->
+            getItem(holder.bindingAdapterPosition)?.let { movie ->
+                view.findNavController().navigate(
+                    MainFragmentDirections.actionGoToDetail( movie = movie)
+                )
+            }
+        }
+
+        return holder
     }
 
     inner class MovieViewHolder(
-        private val binding: AdapterItemBinding
+        val binding: AdapterItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Movie?) {
             binding.let {
