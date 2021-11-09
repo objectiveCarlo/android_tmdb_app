@@ -9,13 +9,13 @@ import com.cxd.moviedbapp.common.db.AppDataBase
 import com.cxd.moviedbapp.common.models.data.MovieResponse
 import com.cxd.moviedbapp.common.models.paging.RemoteKeysEntity
 import com.cxd.moviedbapp.features.popular.datasource.local.PopularMovieEntity
-import com.cxd.moviedbapp.features.popular.datasource.remote.PopularMoviesService
+import com.cxd.moviedbapp.features.movielist.datasource.remote.MovieListService
 import retrofit2.HttpException
 import java.io.IOException
 
 @ExperimentalPagingApi
 class PopularMoviesRemoteMediator(
-    private val service: PopularMoviesService,
+    private val service: MovieListService,
     private val db: AppDataBase
 ) : RemoteMediator<Int, PopularMovieEntity>() {
     override suspend fun load(loadType: LoadType, state: PagingState<Int, PopularMovieEntity>): MediatorResult {

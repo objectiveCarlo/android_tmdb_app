@@ -1,4 +1,4 @@
-package com.cxd.moviedbapp.features.popular.view
+package com.cxd.moviedbapp.features.movielist.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.cxd.moviedbapp.common.models.domain.Movie
 import com.cxd.moviedbapp.databinding.AdapterItemBinding
 import com.cxd.moviedbapp.ui.main.MainFragmentDirections
 
-class PopularMoviesAdapter: PagingDataAdapter<Movie, PopularMoviesAdapter.MovieViewHolder>(
+class MoviesAdapter: PagingDataAdapter<Movie, MoviesAdapter.MovieViewHolder>(
         MovieDiffCallback()
     ) {
 

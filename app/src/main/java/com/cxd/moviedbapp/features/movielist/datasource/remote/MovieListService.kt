@@ -1,11 +1,11 @@
-package com.cxd.moviedbapp.features.popular.datasource.remote
+package com.cxd.moviedbapp.features.movielist.datasource.remote
 
 import com.cxd.moviedbapp.common.models.data.MovieResponse
 import com.cxd.moviedbapp.common.models.network.ResponseItems
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface PopularMoviesService {
+interface MovieListService {
     /**
      * @return List of [MovieResponse]
      *

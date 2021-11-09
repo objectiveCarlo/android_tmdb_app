@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.cxd.moviedbapp.databinding.MovieDetailFragmentBinding
 import com.cxd.moviedbapp.features.favorites.viewmodels.FavoriteMoviesViewModel
-import com.cxd.moviedbapp.features.popular.viewmodels.PopularMoviesViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class MovieDetailFragment: BottomSheetDialogFragment() {

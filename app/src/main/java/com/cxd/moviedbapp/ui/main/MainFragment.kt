@@ -12,8 +12,8 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cxd.moviedbapp.databinding.MainFragmentBinding
-import com.cxd.moviedbapp.features.popular.view.PopularMoviesAdapter
-import com.cxd.moviedbapp.features.popular.viewmodels.PopularMoviesViewModel
+import com.cxd.moviedbapp.features.movielist.view.MoviesAdapter
+import com.cxd.moviedbapp.features.movielist.viewmodels.MovieListViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -21,8 +21,8 @@ import kotlinx.coroutines.launch
 class MainFragment : Fragment() {
     private lateinit var binding: MainFragmentBinding
 
-    private val viewModel: PopularMoviesViewModel by activityViewModels()
-    private val adapter = PopularMoviesAdapter()
+    private val viewModel: MovieListViewModel by activityViewModels()
+    private val adapter = MoviesAdapter()
     private var listJob: Job? = null
 
     override fun onCreateView(
@@ -47,7 +47,7 @@ class MainFragment : Fragment() {
     private fun startListJob() {
         listJob?.cancel()
         listJob = lifecycleScope.launch {
-            viewModel.getMovies()
+            viewModel.getPopularMovies()
                 .collectLatest {
                     adapter.submitData(it)
                 }

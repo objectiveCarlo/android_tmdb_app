@@ -1,10 +1,10 @@
-package com.cxd.moviedbapp.features.popular.repo
+package com.cxd.moviedbapp.features.movielist.repo
 
 import androidx.paging.*
 import com.cxd.moviedbapp.common.db.AppDataBase
 import com.cxd.moviedbapp.common.models.domain.Movie
 import com.cxd.moviedbapp.features.popular.datasource.local.PopularMovieEntity
-import com.cxd.moviedbapp.features.popular.datasource.remote.PopularMoviesService
+import com.cxd.moviedbapp.features.movielist.datasource.remote.MovieListService
 import com.cxd.moviedbapp.features.popular.paging.PopularMoviesRemoteMediator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -13,16 +13,16 @@ import javax.inject.Singleton
 
 @Singleton
 class PopularMoviesRepository @Inject constructor(
-    private val service: PopularMoviesService,
+    private val service: MovieListService,
     private val db: AppDataBase
-){
+): MovieListRepo {
     private val pagingSourceFactory = { db.popularMovieDao.getPopularMovies() }
 
     /**
      * for caching
      */
     @ExperimentalPagingApi
-    fun getMovies(): Flow<PagingData<Movie>> {
+    override fun getPopularMovies(): Flow<PagingData<Movie>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 10,

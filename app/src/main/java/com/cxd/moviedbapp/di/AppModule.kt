@@ -6,7 +6,7 @@ import com.cxd.moviedbapp.common.dao.RemoteKeysDao
 import com.cxd.moviedbapp.common.db.AppDataBase
 import com.cxd.moviedbapp.features.favorites.datasource.FavoriteMovieDao
 import com.cxd.moviedbapp.features.popular.datasource.local.PopularMoviesDao
-import com.cxd.moviedbapp.features.popular.datasource.remote.PopularMoviesService
+import com.cxd.moviedbapp.features.movielist.datasource.remote.MovieListService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,6 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
@@ -73,5 +72,6 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesMovieAPIService(retrofit: Retrofit): PopularMoviesService = retrofit.create(PopularMoviesService::class.java)
+    fun providesMovieAPIService(retrofit: Retrofit): MovieListService = retrofit.create(
+        MovieListService::class.java)
 }
