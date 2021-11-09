@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MovieDBApp</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="popular_movies">Popular Movies</string>
 </resources>
