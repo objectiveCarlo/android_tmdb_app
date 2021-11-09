@@ -5,6 +5,7 @@ import com.cxd.moviedbapp.BuildConfig
 import com.cxd.moviedbapp.common.dao.RemoteKeysDao
 import com.cxd.moviedbapp.common.db.AppDataBase
 import com.cxd.moviedbapp.features.favorites.datasource.FavoriteMovieDao
+import com.cxd.moviedbapp.features.upcoming.datasource.local.UpcomingMoviesDao
 import com.cxd.moviedbapp.features.popular.datasource.local.PopularMoviesDao
 import com.cxd.moviedbapp.features.movielist.datasource.remote.MovieListService
 import dagger.Module
@@ -60,6 +61,11 @@ object AppModule {
     @Singleton
     @Provides
     fun providesFavoriteMoviesDao(appDataBase: AppDataBase): FavoriteMovieDao = appDataBase.favoriteMovieDao
+
+    @Singleton
+    @Provides
+    fun providesUpcomingMoviesDao(appDataBase: AppDataBase): UpcomingMoviesDao = appDataBase.upcomingMovieDao
+
 
     @Singleton
     @Provides
