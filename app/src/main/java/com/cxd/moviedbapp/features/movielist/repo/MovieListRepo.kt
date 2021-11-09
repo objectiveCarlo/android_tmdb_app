@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieListRepo {
     fun getPopularMovies(): Flow<PagingData<Movie>>
+    fun getUpcomingMovies(): Flow<PagingData<Movie>>
 }

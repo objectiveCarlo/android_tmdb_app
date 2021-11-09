@@ -24,4 +24,12 @@ class MovieListViewModel @Inject constructor(
         currentResult = newResult
         return newResult
     }
+
+    @ExperimentalPagingApi
+    fun getUpcomingMovies(): Flow<PagingData<Movie>> {
+        val newResult: Flow<PagingData<Movie>> =
+            repository.getUpcomingMovies().cachedIn(viewModelScope)
+        currentResult = newResult
+        return newResult
+    }
 }
