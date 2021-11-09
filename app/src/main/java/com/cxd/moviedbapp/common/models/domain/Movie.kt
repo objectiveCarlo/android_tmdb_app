@@ -1,5 +1,9 @@
 package com.cxd.moviedbapp.common.models.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Movie(
     val id: Int,
     val isAdultOnly: Boolean,
@@ -11,5 +15,5 @@ data class Movie(
     val overview: String,
     val releaseDate: String,
     val originalLanguage: String
-)
+): Parcelable
 
