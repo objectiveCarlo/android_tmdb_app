@@ -34,8 +34,8 @@ class MovieDetailFragment: BottomSheetDialogFragment() {
 
     private fun drawView() {
         with(args.movie) {
-            binding.tvMovieOverview.text = overview
-            binding.tvMovieReleaseDate.text = releaseDate
+            binding.overview.text = overview
+            binding.releaseDate.text = releaseDate
             binding.title.text = title
             binding.moviePoster.load("https://image.tmdb.org/t/p/w500/$image") {
                 crossfade(durationMillis = 1500)
@@ -45,7 +45,7 @@ class MovieDetailFragment: BottomSheetDialogFragment() {
     }
 
     private fun setClickListeners() {
-        binding.ivMovieDetailClose.setOnClickListener { dismiss() }
+        binding.close.setOnClickListener { dismiss() }
     }
 
     override fun onDestroyView() {
