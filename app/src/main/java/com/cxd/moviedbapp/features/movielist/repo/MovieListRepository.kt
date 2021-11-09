@@ -14,7 +14,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PopularMoviesRepository @Inject constructor(
+class MovieListRepository @Inject constructor(
     private val service: MovieListService,
     private val db: AppDataBase
 ): MovieListRepo {
