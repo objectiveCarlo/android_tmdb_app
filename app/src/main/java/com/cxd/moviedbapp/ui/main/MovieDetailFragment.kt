@@ -45,7 +45,9 @@ class MovieDetailFragment: BottomSheetDialogFragment() {
     }
 
     private fun setClickListeners() {
-        binding.close.setOnClickListener { dismiss() }
+        binding.favorite.setOnClickListener {
+
+        }
     }
 
     override fun onDestroyView() {
