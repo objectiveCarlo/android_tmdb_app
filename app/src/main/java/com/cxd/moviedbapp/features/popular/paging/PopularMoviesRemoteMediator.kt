@@ -71,7 +71,7 @@ class PopularMoviesRemoteMediator(
     }
 
     private suspend fun getKey(): RemoteKeysEntity? {
-        return db.remoteKeysEntityDao.remoteKeysRepoId(0)
+        return db.remoteKeysEntityDao.remoteKeysRepoId(remoteKeysEntityID)
     }
 
     private fun mapRemoteMovieToPopularMovie(
