@@ -10,6 +10,9 @@ For image loading and caching this basic app heavily relies on [COIL-kt](https:/
 
 Navigation Component is used to navigate from list to detail fragment.
 
+Database entities, Response entities and UI entities are sepearated from each other and custom mappers are used. 
+This is to modularize each feature and avoid too much cohesion.
+
 <h2>Modern Android Components Used</h2>
 
 
@@ -38,4 +41,23 @@ Navigation Component is used to navigate from list to detail fragment.
 <h4>Dark Mode<h4>
    
 ![dark mode](https://github.com/objectiveCarlo/android_tmdb_app/blob/main/gitassets/darkMode.png?raw=true)
- 
+
+<h2>Configuration</h2>
+   
+You can add your own [tmdb](https://www.themoviedb.org/) api key inside the [constants.gradle](https://github.com/objectiveCarlo/android_tmdb_app/blob/main/buildsystem/constants.gradle) file
+   
+ ```
+   ext {
+    movieBaseURL = "https://api.themoviedb.org/3/"
+    movieApiKey = "YOUR_OWN_KEY"
+    movieBaseImageURL= "https://image.tmdb.org/t/p/w500/"
+}
+   
+ ```  
+   
+<h2>TODO</h2>
+   
+1. Add unit and automated ui test. Need to add mock server to mock the API request
+1. Implement own Image Loader
+1. Change DetailFragment to use Jetpack Compose
+1. Encapsulate Upcoming List and Popular List into one List interface   
