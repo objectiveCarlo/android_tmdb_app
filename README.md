@@ -4,11 +4,14 @@ This is a basic app that uses paging 3 to handle pagination requirements.
 The app need to connect to a remote service and cache the response via local db using Room.
 So it is needed to implement [RemoteMediator](https://developer.android.com/reference/kotlin/androidx/paging/RemoteMediator).
 
+![architecture](https://github.com/objectiveCarlo/android_tmdb_app/blob/main/gitassets/arch.png?raw=true) 
+
 For image loading and caching this basic app heavily relies on [COIL-kt](https://github.com/coil-kt/coil)
 
 Navigation Component is used to navigate from list to detail fragment.
 
 <h2>Modern Android Components Used</h2>
+
 
 1. MVVM architecture
 1. Kotin
