@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.cxd.moviedbapp.BuildConfig
 import com.cxd.moviedbapp.common.models.domain.Movie
 import com.cxd.moviedbapp.databinding.AdapterItemBinding
 import com.cxd.moviedbapp.ui.main.MainFragmentDirections
@@ -46,7 +47,7 @@ class MoviesAdapter: PagingDataAdapter<Movie, MoviesAdapter.MovieViewHolder>(
             binding.let {
                 binding.title.text = data?.title
                 data?.image?.let {
-                    binding.imageView.load("https://image.tmdb.org/t/p/w500/$it") {
+                    binding.imageView.load("${BuildConfig.BASE_IMAGE_URL}$it") {
                         crossfade(durationMillis = 2000)
                         transformations(RoundedCornersTransformation(12.5f))
                     }

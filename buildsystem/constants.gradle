@@ -1,0 +1,5 @@
+ext {
+    movieBaseURL = "https://api.themoviedb.org/3/"
+    movieApiKey = "d6c4518ccb1f14d139a8bf31bccc85ef"
+    movieBaseImageURL= "https://image.tmdb.org/t/p/w500/"
+}

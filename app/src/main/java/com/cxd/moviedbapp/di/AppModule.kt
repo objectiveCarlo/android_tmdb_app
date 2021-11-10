@@ -22,8 +22,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    private const val BASE_URL = "https://api.themoviedb.org/3/"
-    private const val API_KEY = "d6c4518ccb1f14d139a8bf31bccc85ef"
     @Singleton
     @Provides
     internal fun provideClient(): OkHttpClient {
@@ -32,7 +30,7 @@ object AppModule {
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
                 val originalHttpUrl = chain.request().url
-                val url = originalHttpUrl.newBuilder().addQueryParameter("api_key", API_KEY).build()
+                val url = originalHttpUrl.newBuilder().addQueryParameter("api_key", BuildConfig.API_KEY).build()
                 request.url(url)
                 return@addInterceptor chain.proceed(request.build())
             }
@@ -71,7 +69,7 @@ object AppModule {
     @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(BuildConfig.BASE_API_URL)
         .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()

@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.cxd.moviedbapp.BuildConfig
 import com.cxd.moviedbapp.databinding.MovieDetailFragmentBinding
 import com.cxd.moviedbapp.features.favorites.viewmodels.FavoriteMoviesViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -50,7 +51,7 @@ class MovieDetailFragment: BottomSheetDialogFragment() {
             binding.overview.text = overview
             binding.releaseDate.text = releaseDate
             binding.title.text = title
-            binding.moviePoster.load("https://image.tmdb.org/t/p/w500/$image") {
+            binding.moviePoster.load("${BuildConfig.BASE_IMAGE_URL}$image") {
                 crossfade(durationMillis = 1500)
                 transformations(RoundedCornersTransformation(12.5f))
             }
