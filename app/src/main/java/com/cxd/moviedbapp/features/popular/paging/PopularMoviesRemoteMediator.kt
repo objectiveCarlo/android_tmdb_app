@@ -18,6 +18,7 @@ class PopularMoviesRemoteMediator(
     private val service: MovieListService,
     private val db: AppDataBase
 ) : RemoteMediator<Int, PopularMovieEntity>() {
+    private val remoteKeysEntityID = 0
     override suspend fun load(loadType: LoadType, state: PagingState<Int, PopularMovieEntity>): MediatorResult {
         val key = when (loadType) {
             LoadType.REFRESH -> {
@@ -53,7 +54,7 @@ class PopularMoviesRemoteMediator(
 
                 db.remoteKeysEntityDao.insertKey(
                     RemoteKeysEntity(
-                        0,
+                        remoteKeysEntityID,
                         prevKey = prevKey,
                         nextKey = nextKey,
                         isEndReached = endOfPaginationReached
@@ -92,6 +93,4 @@ class PopularMoviesRemoteMediator(
             originalLanguage = remoteMovie.originalLanguage ?: ""
         )
     }
-
-
 }
