@@ -14,6 +14,6 @@ Basic Android TMDB App
 
 <h3>App Features</h3>
 
-1. Get Upcoming Movies
-1. Get Popular Movies
-1. Add/Remove favorite movie
+1. [Get Upcoming Movies](https://github.com/objectiveCarlo/android_tmdb_app/tree/main/app/src/main/java/com/cxd/moviedbapp/features/upcoming)
+1. [Get Popular Movies](https://github.com/objectiveCarlo/android_tmdb_app/tree/main/app/src/main/java/com/cxd/moviedbapp/features/popular)
+1. [Add/Remove favorite movie](https://github.com/objectiveCarlo/android_tmdb_app/tree/main/app/src/main/java/com/cxd/moviedbapp/features/favorites)
