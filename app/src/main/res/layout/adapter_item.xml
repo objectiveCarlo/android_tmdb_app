@@ -22,7 +22,7 @@
         android:id="@+id/title"
         android:layout_width="@dimen/item_width"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textAppearance="?attr/textAppearanceHeadline4"
         android:textSize="15sp"
         android:gravity="center"
         android:maxLines="2"
