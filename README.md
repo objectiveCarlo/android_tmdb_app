@@ -1,7 +1,6 @@
-Android TMDB APP
+Basic Android TMDB App
 ===========================================
-<h2>Contents</h2>
-These is a sample Android app the uses some 2021 modern android development
+<h2>Modern Android Components Used</h2>
 
 1. MVVM architecture 
 1. Kotin 
