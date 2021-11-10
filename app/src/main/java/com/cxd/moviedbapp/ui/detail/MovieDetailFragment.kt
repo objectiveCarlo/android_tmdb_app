@@ -1,4 +1,4 @@
-package com.cxd.moviedbapp.ui.main
+package com.cxd.moviedbapp.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater

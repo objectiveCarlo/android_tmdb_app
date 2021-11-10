@@ -20,7 +20,7 @@
 
     <dialog
         android:id="@+id/detail_fragment"
-        android:name="com.cxd.moviedbapp.ui.main.MovieDetailFragment"
+        android:name="com.cxd.moviedbapp.ui.detail.MovieDetailFragment"
         tools:layout="@layout/movie_detail_fragment" >
         <argument android:name="movie"
             app:argType="com.cxd.moviedbapp.common.models.domain.Movie"/>
