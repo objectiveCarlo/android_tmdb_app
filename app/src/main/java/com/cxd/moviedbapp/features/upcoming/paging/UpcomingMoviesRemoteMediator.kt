@@ -6,10 +6,9 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.cxd.moviedbapp.common.db.AppDataBase
-import com.cxd.moviedbapp.common.models.data.MovieResponse
 import com.cxd.moviedbapp.common.models.paging.RemoteKeysEntity
-import com.cxd.moviedbapp.features.upcoming.datasource.local.UpcomingMovieEntity
 import com.cxd.moviedbapp.features.movielist.datasource.remote.MovieListService
+import com.cxd.moviedbapp.features.upcoming.datasource.local.UpcomingMovieEntity
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -73,25 +72,5 @@ class UpcomingMoviesRemoteMediator(
 
     private suspend fun getKey(): RemoteKeysEntity? {
         return db.remoteKeysEntityDao.remoteKeysRepoId(remoteKeysEntityID)
-    }
-
-    private fun mapRemoteMovieToUpcomingMovie(
-        remoteMovie: MovieResponse
-    ): UpcomingMovieEntity {
-        return UpcomingMovieEntity(
-            id = remoteMovie.id,
-            isAdultOnly = remoteMovie.isAdultOnly,
-            popularity = remoteMovie.popularity,
-            voteAverage = remoteMovie.voteAverage,
-            voteCount = remoteMovie.voteCount,
-            image = remoteMovie.image ?: remoteMovie.backdropImage ?: "",
-            title = remoteMovie.title ?: remoteMovie.originalTitle
-            ?: remoteMovie.originalTitleAlternative
-            ?: "No title found",
-            overview = remoteMovie.overview,
-            releaseDate = remoteMovie.releaseDate ?: remoteMovie.releaseDateAlternative
-            ?: "No date found",
-            originalLanguage = remoteMovie.originalLanguage ?: ""
-        )
     }
 }
